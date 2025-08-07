@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% extends 'index.html' %}
+{% block content %}
+<div class="container mt-4">
+  <h2>Adminlar Ro'yxati</h2>
+  <a href="{% url 'add_admin' %}" class="btn btn-primary mb-3">Yangi Admin Qo‘shish</a>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Ism</th>
+        <th>Telefon</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for admin in admins %}
+        <tr>
+          <td>{{ admin.id }}</td>
+          <td>{{ admin.fullname }}</td>
+          <td>{{ admin.phone }}</td>
+          <td>{{ admin.email }}</td>
+        </tr>
+      {% empty %}
+        <tr><td colspan="4">Hozircha admin mavjud emas.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
+
+
+</body>
+</html>

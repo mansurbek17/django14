@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>{{ title|default:"Taxi Park Loyihasi" }}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+
+    <style>
+        body {
+            background-image: url('https://images.unsplash.com/photo-1570129477492-45c003edd2be'); /* Taksi rasmi */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+            color: white;
+        }
+
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.7) !important;
+        }
+
+        .nav-link {
+            color: white !important;
+        }
+
+        .nav-link.active {
+            font-weight: bold;
+            border-bottom: 2px solid #ffc107;
+        }
+
+        .container {
+            background-color: rgba(0, 0, 0, 0.65);
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+
+        h1, p {
+            text-shadow: 1px 1px 3px black;
+        }
+
+        .btn {
+            background-color: #ffc107;
+            color: black;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background-color: #e0a800;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+  <div class="container-fluid">
+    <a class="navbar-brand text-warning" href="{% url 'home' %}">TaxiPark</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+      aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link {% if request.path == '/' %}active{% endif %}" href="{% url 'home' %}">Home</a></li>
+        <li class="nav-item"><a class="nav-link {% if 'driver' in request.path %}active{% endif %}" href="{% url 'driver_list' %}">Drivers</a></li>
+        <li class="nav-item"><a class="nav-link {% if 'mijoz' in request.path %}active{% endif %}" href="{% url 'mijoz_list' %}">Mijozlar</a></li>
+        <li class="nav-item"><a class="nav-link {% if 'shartnoma' in request.path %}active{% endif %}" href="{% url 'shartnoma_list' %}">Shartnomalar</a></li>
+        <li class="nav-item"><a class="nav-link {% if 'tolov' in request.path %}active{% endif %}" href="{% url 'tolov_list' %}">To‘lovlar</a></li>
+        <li class="nav-item"><a class="nav-link {% if 'comment' in request.path %}active{% endif %}" href="{% url 'comment_list' %}">Izohlar</a></li>
+        <li class="nav-item"><a class="nav-link {% if 'statistika' in request.path %}active{% endif %}" href="{% url 'Static' %}">Statistika</a></li>
+        <li class="nav-item"><a class="nav-link {% if 'admin' in request.path %}active{% endif %}" href="{% url 'admin_list' %}">Adminlar</a></li>
+        <li class="nav-item"><a class="nav-link {% if 'add_admin' in request.path %}active{% endif %}" href="{% url 'add_admin' %}">Admin Qo‘shish</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+    {% block content %}
+    <h1>{{ title|default:"Taxi Park Loyihasi" }}</h1>
+    <p>Welcome to Taxi Park Admin Panel.</p>
+    {% endblock %}
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+</body>
+</html>

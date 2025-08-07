@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% extends 'index.html' %}
+{% block content %}
+  <h2>Shartnomani tahrirlash</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Saqlash</button>
+    <a href="{% url 'shartnoma_list' %}" class="btn btn-secondary">Bekor qilish</a>
+  </form>
+{% endblock %}
+
+</body>
+</html>

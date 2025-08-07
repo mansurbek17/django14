@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% extends "index.html" %}
+
+{% block content %}
+<h2>{{ title }}</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Ism</th>
+            <th>Telefon</th>
+            <th>Avtomobil modeli</th>
+            <th>Amallar</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for driver in drivers %}
+        <tr>
+            <td>{{ driver.id }}</td>
+            <td>{{ driver.fullname }}</td>
+            <td>{{ driver.phone }}</td>
+            <td>{{ driver.car_model }}</td>
+            <td>
+                <a href="{% url 'update_driver' driver.pk %}" class="btn btn-sm btn-primary">Tahrirlash</a>
+                <a href="{% url 'delete_driver' driver.pk %}" class="btn btn-sm btn-danger">O'chirish</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="5">Haydovchilar topilmadi.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+
+</body>
+</html>

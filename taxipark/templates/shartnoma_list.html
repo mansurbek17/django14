@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% extends "index.html" %}
+
+{% block content %}
+<h2>{{ title }}</h2>
+<a href="{% url 'add_shartnoma' %}" class="btn btn-primary mb-3">Yangi shartnoma qo'shish</a>
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Mijoz</th>
+            <th>Haydovchi</th>
+            <th>Sanalar</th>
+            <th>Amallar</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for shartnoma in shartnomalar %}
+        <tr>
+            <td>{{ shartnoma.id }}</td>
+            <td>{{ shartnoma.mijoz.fullname }}</td>  <!-- fullname ishlatiladi -->
+            <td>{{ shartnoma.driver.fullname }}</td> <!-- fullname ishlatiladi -->
+            <td>{{ shartnoma.start_date }} - {{ shartnoma.end_date }}</td>
+            <td>
+                <a href="{% url 'update_shartnoma' shartnoma.id %}" class="btn btn-sm btn-warning">Tahrirlash</a>
+                <a href="{% url 'delete_shartnoma' shartnoma.id %}" class="btn btn-sm btn-danger">O'chirish</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="5" class="text-center">Shartnoma mavjud emas</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+
+</body>
+</html>
